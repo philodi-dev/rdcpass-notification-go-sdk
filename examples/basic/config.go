@@ -4,7 +4,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/philodi-dev/rdcpass-notification-service/golang-sdk/smsc"
+	"github.com/philodi-dev/rdcpass-notification-go-sdk/smsc"
 )
 
 // Settings holds example runtime configuration from environment variables.

@@ -6,7 +6,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/philodi-dev/rdcpass-notification-service/golang-sdk/smsc"
+	"github.com/philodi-dev/rdcpass-notification-go-sdk/smsc"
 )
 
 func main() {

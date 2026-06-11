@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/philodi-dev/rdcpass-notification-service/golang-sdk/internal/api"
+	"github.com/philodi-dev/rdcpass-notification-go-sdk/internal/api"
 )
 
 // Requests exposes async request status polling.

@@ -4,8 +4,8 @@ import (
 	"context"
 	"strings"
 
-	"github.com/philodi-dev/rdcpass-notification-service/golang-sdk/internal/session"
-	"github.com/philodi-dev/rdcpass-notification-service/golang-sdk/internal/transport"
+	"github.com/philodi-dev/rdcpass-notification-go-sdk/internal/session"
+	"github.com/philodi-dev/rdcpass-notification-go-sdk/internal/transport"
 )
 
 // Client talks to the RDCPASS Notification Service API.

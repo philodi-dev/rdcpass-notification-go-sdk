@@ -7,19 +7,19 @@ App registration is **not** part of this SDK. Obtain `app_id` and `secret_key` f
 ## Installation
 
 ```bash
-go get github.com/philodi-dev/rdcpass-notification-service/golang-sdk/smsc
+go get github.com/philodi-dev/rdcpass-notification-go-sdk/smsc
 ```
 
 For local development inside this repository:
 
 ```bash
-go mod edit -replace github.com/philodi-dev/rdcpass-notification-service/golang-sdk=../golang-sdk
+go mod edit -replace github.com/philodi-dev/rdcpass-notification-go-sdk=../rdcpass-notification-go-sdk
 ```
 
 ## Project layout
 
 ```
-golang-sdk/
+rdcpass-notification-go-sdk/
 ├── smsc/                  # Public API (import this package)
 │   ├── client.go          # Client entry point
 │   ├── config.go          # Config struct
@@ -45,7 +45,7 @@ import (
     "fmt"
     "log"
 
-    "github.com/philodi-dev/rdcpass-notification-service/golang-sdk/smsc"
+    "github.com/philodi-dev/rdcpass-notification-go-sdk/smsc"
 )
 
 func main() {
@@ -154,7 +154,7 @@ if err != nil {
 ## Example project
 
 ```bash
-cd golang-sdk/examples/basic
+cd examples/basic
 export SMSC_BASE_URL=https://your-host/smsc
 export SMSC_APP_ID=your-app-id
 export SMSC_SECRET_KEY=your-secret-key

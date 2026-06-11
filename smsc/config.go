@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/philodi-dev/rdcpass-notification-service/golang-sdk/internal/transport"
+	"github.com/philodi-dev/rdcpass-notification-go-sdk/internal/transport"
 )
 
 // Config holds client credentials and transport options.

@@ -3,7 +3,7 @@ package smsc
 import (
 	"context"
 
-	"github.com/philodi-dev/rdcpass-notification-service/golang-sdk/internal/api"
+	"github.com/philodi-dev/rdcpass-notification-go-sdk/internal/api"
 )
 
 // Platform exposes unauthenticated platform endpoints.

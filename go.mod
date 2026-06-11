@@ -1,3 +1,3 @@
-module github.com/philodi-dev/rdcpass-notification-service/golang-sdk
+module github.com/philodi-dev/rdcpass-notification-go-sdk
 
 go 1.22

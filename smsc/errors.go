@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/philodi-dev/rdcpass-notification-service/golang-sdk/internal/transport"
+	"github.com/philodi-dev/rdcpass-notification-go-sdk/internal/transport"
 )
 
 // APIError is returned when the notification service responds with a non-success status.

@@ -20,7 +20,7 @@ examples/basic/
 ## Run
 
 ```bash
-cd golang-sdk/examples/basic
+cd examples/basic
 
 export SMSC_BASE_URL=https://100.51.101.5/smsc
 export SMSC_APP_ID=your-app-id
