@@ -12,5 +12,9 @@ const (
 	PathOTPVerifyAsync   = "/api/otp/verify/async"
 	PathAPNSSend         = "/api/apns/send"
 	PathAPNSSendAsync    = "/api/apns/send/async"
+	PathEmailSend        = "/api/email/send"
+	PathEmailSendAsync   = "/api/email/send/async"
+	PathEmailSendHTML    = "/api/email/send/html"
+	PathEmailSendHTMLAsync = "/api/email/send/html/async"
 	PathRequestStatusFmt = "/api/requests/%s"
 )

@@ -1,6 +1,6 @@
 # RDCPASS Notification Service — Go SDK
 
-Go client for the [RDCPASS Notification Service](https://github.com/philodi-dev/rdcpass-notification-service) API (SMS, OTP, APNS).
+Go client for the [RDCPASS Notification Service](https://github.com/philodi-dev/rdcpass-notification-service) API (SMS, email, OTP, APNS).
 
 App registration is **not** part of this SDK. Obtain `app_id` and `secret_key` from your administrator, then configure the client with your service `base_url`.
 
@@ -26,7 +26,7 @@ rdcpass-notification-go-sdk/
 │   ├── options.go         # Functional options + New()
 │   ├── auth.go            # Session management (multi-stage)
 │   ├── quick.go           # Single-stage helpers
-│   ├── sms.go / otp.go / apns.go / platform.go / requests.go
+│   ├── sms.go / otp.go / email.go / apns.go / platform.go / requests.go
 │   └── types.go / errors.go
 ├── internal/
 │   ├── api/               # Route path constants
@@ -102,10 +102,11 @@ The SDK exposes two complementary styles:
 | `client.Auth()` | `CreateSession`, `ClearSession` |
 | `client.Platform()` | `Health` |
 | `client.SMS()` | `Send`, `SendAsync` |
+| `client.Email()` | `Send`, `SendAsync`, `SendHTML`, `SendHTMLAsync` |
 | `client.OTP()` | `Send`, `SendAsync`, `Verify`, `VerifyAsync` |
 | `client.APNS()` | `Send`, `SendAsync` |
 | `client.Requests()` | `GetStatus` |
-| `client.Quick()` | `SendSMS`, `SendOTP`, `VerifyOTP` |
+| `client.Quick()` | `SendSMS`, `SendOTP`, `VerifyOTP`, `SendEmail`, `SendHTMLEmail` |
 
 ```go
 session, _ := client.Auth().CreateSession(ctx)
@@ -116,6 +117,12 @@ sms, _ := client.SMS().Send(ctx, smsc.SendSMSRequest{
 })
 
 otp, _ := client.OTP().Send(ctx, smsc.SendOTPRequest{Phone: "+2434445079"})
+
+email, _ := client.Email().Send(ctx, smsc.SendEmailRequest{
+    To:      "user@example.com",
+    Subject: "Hello",
+    Body:    "Welcome to RDCPASS.",
+})
 ```
 
 Subsequent calls reuse the cached session automatically (refreshed 10s before expiry).
@@ -128,14 +135,16 @@ Subsequent calls reuse the cached session automatically (refreshed 10s before ex
 client.Quick().SendSMS(ctx, phone, content)
 client.Quick().SendOTP(ctx, phone)
 client.Quick().VerifyOTP(ctx, phone, code)
+client.Quick().SendEmail(ctx, to, subject, body)
+client.Quick().SendHTMLEmail(ctx, to, subject, html)
 ```
 
 ### Convenience methods
 
 Top-level shortcuts mirror the grouped API for brevity:
 
-- `client.SendSMS`, `client.SendOTP`, `client.VerifyOTP`, …
-- `client.SendSMSSingle`, `client.SendOTPSingle`, `client.VerifyOTPSingle`
+- `client.SendSMS`, `client.SendEmail`, `client.SendOTP`, `client.VerifyOTP`, …
+- `client.SendSMSSingle`, `client.SendEmailSingle`, `client.SendOTPSingle`, `client.VerifyOTPSingle`
 
 ## Error handling
 
@@ -167,7 +176,8 @@ export SMSC_TLS_INSECURE=true   # UAT self-signed certs
 
 ## Types
 
-- `NotificationResponse` — SMS / OTP send / APNS result
+- `NotificationResponse` — SMS / email / OTP send / APNS result
+- `SendEmailRequest` / `SendHTMLEmailRequest` — plain-text and HTML email payloads
 - `OtpVerifyResponse` — OTP verify result (`request_id`, `status`, `signature`)
 - `SessionResponse` — session token and TTL
 - `HealthResponse` — platform health

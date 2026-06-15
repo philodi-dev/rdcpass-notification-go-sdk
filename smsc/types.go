@@ -24,6 +24,8 @@ type NotificationType string
 
 const (
 	TypeSMS       NotificationType = "sms"
+	TypeEmail     NotificationType = "email"
+	TypeEmailHTML NotificationType = "email_html"
 	TypeOTPSend   NotificationType = "otp_send"
 	TypeOTPVerify NotificationType = "otp_verify"
 	TypeAPNS      NotificationType = "apns"
@@ -36,7 +38,7 @@ type SessionResponse struct {
 	ExpiresIn    int64  `json:"expires_in"`
 }
 
-// NotificationResponse is returned by SMS, OTP send, and APNS endpoints.
+// NotificationResponse is returned by SMS, email, OTP send, and APNS endpoints.
 type NotificationResponse struct {
 	RequestID         string           `json:"request_id"`
 	AppID             string           `json:"app_id"`
@@ -69,6 +71,22 @@ type HealthResponse struct {
 type SendSMSRequest struct {
 	Phone   string `json:"phone"`
 	Content string `json:"content"`
+}
+
+// SendEmailRequest is the body for POST /api/email/send.
+type SendEmailRequest struct {
+	To      string  `json:"to"`
+	Subject string  `json:"subject"`
+	Body    string  `json:"body"`
+	ReplyTo *string `json:"reply_to,omitempty"`
+}
+
+// SendHTMLEmailRequest is the body for POST /api/email/send/html.
+type SendHTMLEmailRequest struct {
+	To      string  `json:"to"`
+	Subject string  `json:"subject"`
+	HTML    string  `json:"html"`
+	ReplyTo *string `json:"reply_to,omitempty"`
 }
 
 // SendOTPRequest is the body for POST /api/otp/send.
